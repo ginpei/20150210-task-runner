@@ -2,20 +2,28 @@ var gulp = require('gulp');
 var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var del = require('del');
+var livereload = require('gulp-livereload');
 var sass = require('gulp-ruby-sass');
 var sprite = require('gulp.spritesmith');
 var watch = require('gulp-watch');
 var webserver = require('gulp-webserver');
+
+gulp.task('clean-public', function() {
+	return del('public');
+});
 
 gulp.task('coffee', function() {
 	return gulp.src('src/coffee/**/*.coffee')
 		.pipe(coffee())
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest('public/js/'))
+		.pipe(livereload());
 });
 
 gulp.task('copy-html', function() {
-	console.log('copy html');
+	return gulp.src('src/html/**/*.html')
+		.pipe(gulp.dest('public'))
+		.pipe(livereload());
 });
 
 gulp.task('csslibs', function() {
@@ -41,41 +49,51 @@ gulp.task('jslibs', function() {
 gulp.task('sass', function () {
 	return gulp.src('src/scss/main.scss')
 		.pipe(sass({ style:'compressed' }))
-		.pipe(gulp.dest('public/css'));
+		.pipe(gulp.dest('public/css'))
+		.pipe(livereload());
 });
 
-gulp.task('sprite', function() {
-	return gulp.src('src/img/*')
+gulp.task('sprite1', function() {
+	return gulp.src('src/img/**/*.png')
 		.pipe(sprite({
-			imgName:'img/sprite-img1.png',
-			cssName:'css/sprite-img1.css'
+			imgName:'img/sprite1.png',
+			cssName:'css/sprite1.css'
 		}))
 		.pipe(gulp.dest('public'));
 });
 
 gulp.task('watch', function () {
-		// CSS
-    watch('src/scss/main.scss', function() {
-        gulp.start(['sass']);
-    });
-		// JS
-    watch('src/coffee/**/*.coffee', function() {
-        gulp.start(['coffee']);
-    });
-		// HTML
-    watch('src/html/**/*.html', function() {
-        gulp.start(['copy-html']);
-    });
+	livereload.listen();
+	// CSS
+	watch('src/scss/main.scss', function() {
+			gulp.start(['sass']);
+	});
+	// JS
+	watch('src/coffee/**/*.coffee', function() {
+			gulp.start(['coffee']);
+	});
+	// HTML
+	watch('src/html/**/*.html', function() {
+			gulp.start(['copy-html']);
+	});
+});
+
+gulp.task('webserver', function() {
+	return gulp.src('public')
+		.pipe(webserver({
+			host: '0.0.0.0',
+			port: 3000
+		}));
 });
 
 gulp.task('build', [
-	'clean:public',
-	'concat:libs',
-	'copy:html',
+	'clean-public',
+	'jslibs',
+	'csslibs',
+	'copy-html',
 	'coffee',
-	'sprite',
-	'sass',
-	'copy:css'
+	'sprite1',
+	'sass'
 ]);
 
 gulp.task('default', [
