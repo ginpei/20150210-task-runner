@@ -43,7 +43,7 @@ gulp.task('jslibs', function() {
 		.pipe(gulp.dest('public/js/'))
 });
 
-// エラーが出る場合、package.jsonでgulp-ruby-sassのバージョンがalphaでない確認する
+// If an error was occured, assure that gulp-ruby-sass's version is not alpha.
 // ✔ "gulp-ruby-sass": "^0.7.1",
 // ✘ "gulp-ruby-sass": "^1.0.0-alpha.3",
 gulp.task('sass', function () {
