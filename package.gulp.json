@@ -18,7 +18,8 @@
   "devDependencies": {},
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower i",
-    "start": "gulp"
+    "start": "gulp",
+    "switch": "mv package.json package.gulp.json; mv package.grunt.json package.json"
   },
   "repository": {
     "type": "git",
