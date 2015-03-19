@@ -13,7 +13,8 @@
     "gulp-ruby-sass": "^0.7.1",
     "gulp-watch": "^4.1.0",
     "gulp-webserver": "^0.9.0",
-    "gulp.spritesmith": "^2.5.1"
+    "gulp.spritesmith": "^2.5.1",
+    "gulp-autoprefixer": "~1.0.1"
   },
   "devDependencies": {},
   "scripts": {

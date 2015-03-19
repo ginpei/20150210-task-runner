@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var autoprefixer = require('gulp-autoprefixer');
 var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var del = require('del');
@@ -15,14 +16,17 @@ gulp.task('clean', function() {
 });
 
 // CSS
-// ※エラーが発生した場合、package.jsonで
-// gulp-ruby-sassのバージョンがalphaでない事を確認。
-// ✔ "gulp-ruby-sass": "^0.7.1",
-// ✘ "gulp-ruby-sass": "^1.0.0-alpha.3",
-// （書籍本文を参照。）
+// ※エラーが発生した場合、package.jsonのバージョンを確認。（最新版だと駄目。）
+// ✔ "gulp-ruby-sass": "~0.7.1",
+// ✘ "gulp-ruby-sass": "~1.0.0-alpha.3",
+// ✔ "gulp-autoprefixer": "~1.0.1"
+// ✘ "gulp-autoprefixer": "~2.0.0"
+// インストール時にバージョンを指定する。
+// $ npm install -S gulp-ruby-sass@0.7.1 gulp-autoprefixer@1.0.1
 gulp.task('css', function() {
 	return gulp.src('src/scss/main.scss')
 		.pipe(sass())
+		.pipe(autoprefixer())
 		.pipe(gulp.dest('public/css'))
 		.pipe(livereload());
 });
