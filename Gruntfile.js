@@ -68,18 +68,20 @@ module.exports = function(grunt) {
 		},
 
 		// Sass
+		// （ファイルは最終的にcopy:cssで移動。）
 		sass: {
 			main: {
 				options: {
 					style: 'compressed'
 				},
 				files: {
-					'public/css/main.css': 'src/scss/main.scss'
+					'tmp/css/main.css': 'src/scss/main.scss'
 				}
 			}
 		},
 
 		// 画像のスプライト化
+		// （CSSファイルは最終的にcopy:cssで移動。）
 		sprite: {
 			img1: {
 				src: 'src/img/sprite1/**/*.png',
