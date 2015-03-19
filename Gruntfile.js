@@ -132,7 +132,7 @@ module.exports = function(grunt) {
 
 		// ファイル監視
 		// （ちなみに……実行タスクをregisterTaskでそれぞれまとめておくと、
-		//   こことdefaultタスクと両方を更新する必要がなくなるので便利です。）
+		//   こことdefaultタスクと両方を更新する必要がなくなるので便利。）
 		watch: {
 			css: {
 				files: 'src/scss/**/*.scss',
