@@ -79,7 +79,16 @@ gulp.task('watch', function () {
 	});
 });
 
-gulp.task('webserver', function() {
+// 簡易サーバー
+// （起動前に諸々のファイル生成を完了させておく。）
+gulp.task('webserver', [
+	'css',
+	'csslibs',
+	'html',
+	'js',
+	'jslibs',
+	'sprite1'
+], function() {
 	return gulp.src('public')
 		.pipe(webserver({
 			host: '0.0.0.0',
@@ -88,12 +97,6 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('default', [
-	'css',
-	'csslibs',
-	'html',
-	'js',
-	'jslibs',
-	'sprite1',
 	'watch',
 	'webserver'
 ]);
