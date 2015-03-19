@@ -8,6 +8,7 @@ var livereload = require('gulp-livereload');
 var sass = require('gulp-ruby-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var sprite = require('gulp.spritesmith');
+var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var webserver = require('gulp-webserver');
 
@@ -57,6 +58,7 @@ gulp.task('js', function() {
 		.pipe(sourcemaps.init())
 		.pipe(coffee())
 		.pipe(concat('main.js'))
+		.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('public/js/'))
 		.pipe(livereload());
