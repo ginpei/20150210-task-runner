@@ -22,7 +22,7 @@ gulp.task('clean', function() {
 // （書籍本文を参照。）
 gulp.task('css', function() {
 	return gulp.src('src/scss/main.scss')
-		.pipe(sass({ style:'compressed' }))
+		.pipe(sass())
 		.pipe(gulp.dest('public/css'))
 		.pipe(livereload());
 });
