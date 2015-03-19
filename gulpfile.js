@@ -6,6 +6,7 @@ var cssmin = require('gulp-cssmin');
 var del = require('del');
 var livereload = require('gulp-livereload');
 var sass = require('gulp-ruby-sass');
+var sourcemaps = require('gulp-sourcemaps');
 var sprite = require('gulp.spritesmith');
 var watch = require('gulp-watch');
 var webserver = require('gulp-webserver');
@@ -53,8 +54,10 @@ gulp.task('html', function() {
 // JS
 gulp.task('js', function() {
 	return gulp.src('src/coffee/**/*.coffee')
+		.pipe(sourcemaps.init())
 		.pipe(coffee())
 		.pipe(concat('main.js'))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('public/js/'))
 		.pipe(livereload());
 });
