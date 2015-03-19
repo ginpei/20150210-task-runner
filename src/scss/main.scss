@@ -8,10 +8,11 @@ a {
 	display: inline-block;
 	min-width: 2em;
 	transform-origin: left bottom;
-	transition: transform 0.1s;
+	transition: transform 0.3s;
 
 	&:hover {
 		transform: skew(-15deg, 0);
+		transition: transform 0.1s;
 	}
 }
 i {
