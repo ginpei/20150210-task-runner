@@ -1,3 +1,9 @@
 body {
 	background-color: #cef;
 }
+#button {
+	transition: transform 50ms;
+}
+#button:active {
+	transform: scale(0.95);
+}

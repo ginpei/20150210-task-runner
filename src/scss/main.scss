@@ -4,6 +4,16 @@ body {
 	font-size: 20px;
 	color: green;
 }
+a {
+	display: inline-block;
+	min-width: 2em;
+	transform-origin: left bottom;
+	transition: transform 0.1s;
+
+	&:hover {
+		transform: skew(-15deg, 0);
+	}
+}
 i {
 	display: inline-block;
 	vertical-align: middle;
