@@ -76,6 +76,15 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// CSS min
+		cssmin: {
+			main: {
+				files: {
+					'tmp/css/main.css': 'tmp/css/main.css'
+				}
+			}
+		},
+
 		// Sass
 		// （ファイルは最終的にcopy:cssで移動。）
 		sass: {
@@ -111,6 +120,7 @@ module.exports = function(grunt) {
 					'sprite',
 					'sass',
 					'autoprefixer',
+					'cssmin',
 					'copy:css'
 				],
 				options: {
@@ -140,6 +150,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-spritesmith');
@@ -157,6 +168,7 @@ module.exports = function(grunt) {
 		'sprite',
 		'sass',
 		'autoprefixer',
+		'cssmin',
 		'copy:css',
 		// 簡易サーバー起動
 		'connect',
