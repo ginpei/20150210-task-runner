@@ -1,5 +1,14 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
+		// ベンダー接頭辞追加
+		// （ファイルは最終的にcopy:cssで移動。）
+		autoprefixer: {
+			main: {
+				src: 'tmp/css/main.css',
+				dest: 'tmp/css/main.css'
+			}
+		},
+
 		// ファイル削除
 		clean: {
 			public: 'public',
@@ -118,6 +127,7 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -143,6 +153,7 @@ module.exports = function(grunt) {
 		// CSS
 		'sprite',
 		'sass',
+		'autoprefixer',
 		'copy:css'
 	]);
 
