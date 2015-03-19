@@ -102,10 +102,17 @@ module.exports = function(grunt) {
 		},
 
 		// ファイル監視
+		// （ちなみに……実行タスクをregisterTaskでそれぞれまとめておくと、
+		//   こことdefaultタスクと両方を更新する必要がなくなるので便利です。）
 		watch: {
 			css: {
 				files: 'src/scss/**/*.scss',
-				tasks: ['sass'],
+				tasks: [
+					'sprite',
+					'sass',
+					'autoprefixer',
+					'copy:css'
+				],
 				options: {
 					livereload: true
 				}
@@ -137,11 +144,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-spritesmith');
 
-	// ファイル生成の独自タスクを作成
-	// （こうやってdefaultから分けて用意しておくと、
-	//   リリース時等、生成ファイルだけ欲しいときに
-	//   `grunt build`と使えるので便利。）
-	grunt.registerTask('build', [
+	grunt.registerTask('default', [
 		// 初期化
 		'clean:public',
 		'clean:tmp',
@@ -154,12 +157,10 @@ module.exports = function(grunt) {
 		'sprite',
 		'sass',
 		'autoprefixer',
-		'copy:css'
-	]);
-
-	grunt.registerTask('default', [
-		'build',    // ファイル生成（上記）
-		'connect',  // 簡易サーバー起動
-		'watch'     // ファイル監視開始
+		'copy:css',
+		// 簡易サーバー起動
+		'connect',
+		// ファイル監視開始
+		'watch'
 	]);
 };
