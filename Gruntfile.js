@@ -72,7 +72,8 @@ module.exports = function(grunt) {
 		sass: {
 			main: {
 				options: {
-					style: 'compressed'
+					// CSS minの代わりにこの指定でもOK
+					// style: 'compressed'
 				},
 				files: {
 					'tmp/css/main.css': 'src/scss/main.scss'
