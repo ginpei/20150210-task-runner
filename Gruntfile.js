@@ -120,6 +120,8 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// JS min
+		// （UglifyJSという名前のツールでJSを縮小する。）
 		uglify: {
 			main: {
 				files: {
