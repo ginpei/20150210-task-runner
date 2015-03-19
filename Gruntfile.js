@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		coffee: {
 			main: {
 				files: {
-					'public/js/main.js': ['src/coffee/**/*.coffee']
+					'tmp/js/main.js': ['src/coffee/**/*.coffee']
 				},
 				options: {
 					sourceMap: true
@@ -61,6 +61,16 @@ module.exports = function(grunt) {
 						cwd: 'tmp/css',
 						src: '**/*.css',
 						dest: 'public/css'
+					}
+				]
+			},
+			js: {
+				files: [
+					{
+						expand: true,
+						cwd: 'tmp/js',
+						src: '**/*.js',
+						dest: 'public/js'
 					}
 				]
 			},
@@ -129,7 +139,10 @@ module.exports = function(grunt) {
 			},
 			js: {
 				files: 'src/coffee/**/*.coffee',
-				tasks: ['coffee'],
+				tasks: [
+					'coffee',
+					'copy:js'
+				],
 				options: {
 					livereload: true
 				}
@@ -164,6 +177,7 @@ module.exports = function(grunt) {
 		'copy:html',
 		// JS
 		'coffee',
+		'copy:js',
 		// CSS
 		'sprite',
 		'sass',
