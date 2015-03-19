@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
 var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
+var cssmin = require('gulp-cssmin');
 var del = require('del');
 var livereload = require('gulp-livereload');
 var sass = require('gulp-ruby-sass');
@@ -27,6 +28,7 @@ gulp.task('css', function() {
 	return gulp.src('src/scss/main.scss')
 		.pipe(sass())
 		.pipe(autoprefixer())
+		.pipe(cssmin())
 		.pipe(gulp.dest('public/css'))
 		.pipe(livereload());
 });
