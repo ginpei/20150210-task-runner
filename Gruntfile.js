@@ -126,20 +126,28 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-spritesmith');
 
+	// ファイル生成の独自タスクを作成
+	// （こうやってdefaultから分けて用意しておくと、
+	//   リリース時等、生成ファイルだけ欲しいときに
+	//   `grunt build`と使えるので便利。）
 	grunt.registerTask('build', [
+		// 初期化
 		'clean:public',
 		'clean:tmp',
 		'concat:libs',
+		// HTML
 		'copy:html',
+		// JS
 		'coffee',
+		// CSS
 		'sprite',
 		'sass',
 		'copy:css'
 	]);
 
 	grunt.registerTask('default', [
-		'build',
-		'connect',
-		'watch'
+		'build',    // ファイル生成（上記）
+		'connect',  // 簡易サーバー起動
+		'watch'     // ファイル監視開始
 	]);
 };
