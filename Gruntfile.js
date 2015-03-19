@@ -128,6 +128,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', [
 		'clean:public',
+		'clean:tmp',
 		'concat:libs',
 		'copy:html',
 		'coffee',
