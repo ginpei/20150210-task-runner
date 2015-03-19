@@ -120,6 +120,14 @@ module.exports = function(grunt) {
 			}
 		},
 
+		uglify: {
+			main: {
+				files: {
+					'tmp/js/main.js': 'tmp/js/main.js'
+				}
+			}
+		},
+
 		// ファイル監視
 		// （ちなみに……実行タスクをregisterTaskでそれぞれまとめておくと、
 		//   こことdefaultタスクと両方を更新する必要がなくなるので便利です。）
@@ -141,6 +149,7 @@ module.exports = function(grunt) {
 				files: 'src/coffee/**/*.coffee',
 				tasks: [
 					'coffee',
+					'uglify',
 					'copy:js'
 				],
 				options: {
@@ -165,6 +174,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-spritesmith');
 
@@ -177,6 +187,7 @@ module.exports = function(grunt) {
 		'copy:html',
 		// JS
 		'coffee',
+		'uglify',
 		'copy:js',
 		// CSS
 		'sprite',
