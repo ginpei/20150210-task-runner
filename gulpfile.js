@@ -96,6 +96,10 @@ gulp.task('webserver', [
 		}));
 });
 
+// デフォルトタスク
+// （cleanは含めていないので、必要な場合は
+//   `gulp clean; gulp`
+//   のように別途実行後にデフォルトタスクを実行する。）
 gulp.task('default', [
 	'watch',
 	'webserver'
