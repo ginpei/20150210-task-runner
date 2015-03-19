@@ -33,7 +33,7 @@ gulp.task('csslibs', function() {
 
 gulp.task('html', function() {
 	return gulp.src('src/html/**/*.html')
-		.pipe(gulp.dest('public'))  // コピー
+		.pipe(gulp.dest('public'))
 		.pipe(livereload());
 });
 
