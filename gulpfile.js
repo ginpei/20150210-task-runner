@@ -8,14 +8,18 @@ var sprite = require('gulp.spritesmith');
 var watch = require('gulp-watch');
 var webserver = require('gulp-webserver');
 
+// ファイル削除
 gulp.task('clean', function() {
 	del('public');
 	del('tmp');
 });
 
-// If an error was occured, assure that gulp-ruby-sass's version is not alpha.
+// CSS
+// ※エラーが発生した場合、package.jsonで
+// gulp-ruby-sassのバージョンがalphaでない事を確認。
 // ✔ "gulp-ruby-sass": "^0.7.1",
 // ✘ "gulp-ruby-sass": "^1.0.0-alpha.3",
+// （書籍本文を参照。）
 gulp.task('css', function() {
 	return gulp.src('src/scss/main.scss')
 		.pipe(sass({ style:'compressed' }))
@@ -23,6 +27,8 @@ gulp.task('css', function() {
 		.pipe(livereload());
 });
 
+// CSSライブラリー
+// （watchからの実行タスクから分ける。）
 gulp.task('csslibs', function() {
 	return gulp.src([
 		'bower_components/bootstrap/dist/css/bootstrap.min.css'
@@ -31,12 +37,14 @@ gulp.task('csslibs', function() {
 		.pipe(gulp.dest('public/css/'))
 });
 
+// HTML
 gulp.task('html', function() {
 	return gulp.src('src/html/**/*.html')
 		.pipe(gulp.dest('public'))
 		.pipe(livereload());
 });
 
+// JS
 gulp.task('js', function() {
 	return gulp.src('src/coffee/**/*.coffee')
 		.pipe(coffee())
@@ -45,6 +53,8 @@ gulp.task('js', function() {
 		.pipe(livereload());
 });
 
+// JSライブラリー
+// （watchからの実行タスクから分ける。）
 gulp.task('jslibs', function() {
 	return gulp.src([
 		'bower_components/jquery/dist/jquery.min.js',
@@ -54,6 +64,7 @@ gulp.task('jslibs', function() {
 		.pipe(gulp.dest('public/js/'))
 });
 
+// CSSスプライト
 gulp.task('sprite1', function() {
 	return gulp.src('src/img/**/*.png')
 		.pipe(sprite({
@@ -63,8 +74,11 @@ gulp.task('sprite1', function() {
 		.pipe(gulp.dest('public'));
 });
 
+// ファイル監視
 gulp.task('watch', function () {
+	// ブラウザー自動更新の準備
 	livereload.listen();
+
 	// CSS
 	watch('src/scss/main.scss', function() {
 			gulp.start(['css']);
