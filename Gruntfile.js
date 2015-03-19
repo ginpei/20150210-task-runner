@@ -48,20 +48,20 @@ module.exports = function(grunt) {
 			css: {
 				files: [
 					{
-						expand:true,
-						cwd:'tmp/css',
-						src:'**/*.css',
-						dest:'public/css'
+						expand: true,
+						cwd: 'tmp/css',
+						src: '**/*.css',
+						dest: 'public/css'
 					}
 				]
 			},
 			html: {
 				files: [
 					{
-						expand:true,
-						cwd:'src/html',
-						src:'**/*.html',
-						dest:'public'
+						expand: true,
+						cwd: 'src/html',
+						src: '**/*.html',
+						dest: 'public'
 					}
 				]
 			}
