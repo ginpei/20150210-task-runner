@@ -6,6 +6,9 @@ module.exports = function(grunt) {
 			main: {
 				src: 'tmp/css/main.css',
 				dest: 'tmp/css/main.css'
+			},
+			options: {
+				map: true
 			}
 		},
 
@@ -61,6 +64,12 @@ module.exports = function(grunt) {
 						cwd: 'tmp/css',
 						src: '**/*.css',
 						dest: 'public/css'
+					},
+					{  // source map
+						expand: true,
+						cwd: 'tmp/css',
+						src: '**/*.css.map',
+						dest: 'public/css'
 					}
 				]
 			},
@@ -103,6 +112,9 @@ module.exports = function(grunt) {
 			main: {
 				files: {
 					'tmp/css/main.css': 'tmp/css/main.css'
+				},
+				options: {
+					sourceMap: true
 				}
 			}
 		},
@@ -112,7 +124,8 @@ module.exports = function(grunt) {
 		sass: {
 			main: {
 				options: {
-					// CSS minの代わりにこの指定でもOK
+					sourcemap: 'inline'
+					// CSS minの代わりにこの指定↓でもOK
 					// style: 'compressed'
 				},
 				files: {
