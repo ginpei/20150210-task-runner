@@ -71,6 +71,18 @@ module.exports = function(grunt) {
 						cwd: 'tmp/js',
 						src: '**/*.js',
 						dest: 'public/js'
+					},
+					{  // source map
+						expand: true,
+						cwd: 'tmp/js',
+						src: '**/*.js.map',
+						dest: 'public/js'
+					},
+					{  // source mapから参照する元ファイル
+						expand: true,
+						cwd: 'tmp/js',
+						src: '**/*.coffee',
+						dest: 'public/js'
 					}
 				]
 			},
@@ -126,6 +138,11 @@ module.exports = function(grunt) {
 			main: {
 				files: {
 					'tmp/js/main.js': 'tmp/js/main.js'
+				},
+				options: {
+					sourceMap: true,
+					sourceMapIncludeSources: true,
+					sourceMapIn: 'tmp/js/main.js.map'
 				}
 			}
 		},
