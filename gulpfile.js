@@ -29,7 +29,7 @@ gulp.task('clean', function() {
 gulp.task('css', function() {
 	return gulp.src('src/scss/main.scss')
 		.pipe(sass())
-		.pipe(autoprefixer())
+		.pipe(autoprefixer())  // 1系はsource mapに未対応、2系はsassと組み合わせでエラー
 		.pipe(cssmin())
 		.pipe(gulp.dest('public/css'))
 		.pipe(livereload());
