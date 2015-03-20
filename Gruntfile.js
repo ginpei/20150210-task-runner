@@ -70,6 +70,11 @@ module.exports = function(grunt) {
 						cwd: 'tmp/css',
 						src: '**/*.css.map',
 						dest: 'public/css'
+					},
+					{  // source mapから参照する元ファイル
+						expand: true,
+						src: 'src/scss/**/*.scss',
+						dest: 'public/css'
 					}
 				]
 			},
