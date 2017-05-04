@@ -1,5 +1,7 @@
 # タスクランナーのサンプル
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ginpei/20150210-task-runner.svg)](https://greenkeeper.io/)
+
 タスクランナーを使ったサンプルプロジェクトです。
 
 Grunt、gulpの両方を用意しています。（実際の運用ではどちらか一方で十分です。）
